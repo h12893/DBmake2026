@@ -1,0 +1,9 @@
+{
+	"name": "read-government-statistical",
+	"location": "japaneast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c12ca548-1082-4277-90c5-69ba8b8af1f7",
+		"tenantId": "cbfdf4f3-76db-4bd8-9440-a625a84ba45f"
+	}
+}
