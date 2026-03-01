@@ -21,23 +21,23 @@
 ## sql
 
 SQLテーブル形式で保存されるデータの作成用のクエリの格納先。
-SQLは格納ファイルを.sqlに、ファイル名は*動詞＋対象＋用途*形式で、全て小文字とする。
+SQLは格納ファイルを.sqlに、ファイル名は **動詞＋対象＋用途** 形式で、全て小文字とする。
 
 ### population
 
 #### PL_population_yyyyのクエリ
 
-- create_population_curated.sql：population_curatedを作成（パイプラインのCreateCuratedTableIfNotExistsの処理に対応）
+- create_population_curated.sql：population_curatedを作成（パイプラインの*CreateCuratedTableIfNotExists*の処理に対応）
 
-- create_population_landing.sql：population_landingを作成（パイプラインのCreateLandingTableIfNotExistsの処理に対応）
+- create_population_landing.sql：population_landingを作成（パイプラインの*CreateLandingTableIfNotExists*の処理に対応）
 
-- truncate_population_landing.sql：population_landingの中身を削除（パイプラインのTruncateLandingの処理に対応）
+- truncate_population_landing.sql：population_landingの中身を削除（パイプラインの*TruncateLanding*の処理に対応）
 
-- set_default_year.sql：population_landingのyearのDEFAULT制約を付け替え（パイプラインのSetDefaultYearの処理に対応）
+- set_default_year.sql：population_landingのyearのDEFAULT制約を付け替え（パイプラインの*SetDefaultYear*の処理に対応）
 
-- clean_prefecturecode_landing.sql：カラムの型変換（パイプラインのUpdatePrefectureCodeAndCleanPrefectureの処理に対応）
+- clean_prefecturecode_landing.sql：カラムの型変換（パイプラインの*UpdatePrefectureCodeAndCleanPrefecture*の処理に対応）
 
-- merge_population_curated.sql：population_landingのpopulation_curatedへのマージ処理（パイプラインのsp_population_mergeの処理に対応）
+- merge_population_curated.sql：population_landingのpopulation_curatedへのマージ処理（パイプラインの*sp_population_merge*の処理に対応）
 
 ### jobs
 
@@ -45,15 +45,15 @@ SQLは格納ファイルを.sqlに、ファイル名は*動詞＋対象＋用途
 
 #### PL_metadata_codesのクエリ
 
-- create_codes_metadata.sql：metadata_codesを作成（パイプラインのCreateMetadataCodesの処理に対応）
+- create_codes_metadata.sql：metadata_codesを作成（パイプラインの*CreateMetadataCodes*の処理に対応）
 
-- truncate_codes_metadata.sql：metadata_codesの中身を削除（パイプラインのTruncateMetadataCodesの処理に対応）
+- truncate_codes_metadata.sql：metadata_codesの中身を削除（パイプラインの*TruncateMetadataCodes*の処理に対応）
 
-- insert_elseinfo_codes.sql：region_typeが「全国」「外国」「不詳」のコードをmetadata_codesに挿入（パイプラインのInsertElseInfoの処理に対応）
+- insert_elseinfo_codes.sql：region_typeが「全国」「外国」「不詳」のコードをmetadata_codesに挿入（パイプラインの*InsertElseInfo*の処理に対応）
 
-- insert_prefecture_codes.sql：region_typeが「都道府県」のコードをmetadata_codesに挿入（パイプラインのInsertPrefecturerInfoの処理に対応）
+- insert_prefecture_codes.sql：region_typeが「都道府県」のコードをmetadata_codesに挿入（パイプラインの*InsertPrefecturerInfo*の処理に対応）
 
-- insert_city_codes.sql：region_typeが「政令市、23区」のコードをmetadata_codesに挿入（パイプラインのInsertCityInfoの処理に対応）
+- insert_city_codes.sql：region_typeが「政令市、23区」のコードをmetadata_codesに挿入（パイプラインの*InsertCityInfo*の処理に対応）
 
 ## pipelines
 
