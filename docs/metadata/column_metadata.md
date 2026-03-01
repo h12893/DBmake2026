@@ -6,7 +6,7 @@
 |--------|-------------|------|----------|-------------|------|-------------|-------------|-------|
 | 1 | prefecture_code | INT | NO | 地域コード | - | 〇 | 〇 | metadata_codes と JOIN |
 | 2 | year | INT | NO | 年度 | 年 | 〇 | 〇 | - |
-| 3 | population | INT | YES | 人口 | 人 | - | - | TRY_CAST |
+| 3 | population | INT | YES | 人口 | 人 | - | - | - |
 | 4 | births | INT | YES | 出生数 | 人 | - | - | - |
 | 5 | deaths | INT | YES | 死亡数 | 人 | - | - | - |
 | 6 | infant_deaths | INT | YES | 乳児死亡数 | 人 | - | - | - |
