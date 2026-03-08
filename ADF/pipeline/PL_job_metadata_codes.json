@@ -1,0 +1,103 @@
+{
+	"name": "PL_job_metadata_codes",
+	"properties": {
+		"activities": [
+			{
+				"name": "CreateMetadataCodes",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "Connect_population_dynamics_prefecture",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "IF NOT EXISTS (\n    SELECT 1\n    FROM sys.tables\n    WHERE name = 'job_metadata_codes'\n)\nBEGIN\n    CREATE TABLE job_metadata_codes (\n    job_code INT NOT NULL PRIMARY KEY,\n    job_type NVARCHAR(200) NOT NULL,\n    );\nEND;\n\n\n"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "InsertJobTypeInfo",
+				"description": "region_typeが「全国」のコードを入力「外国」「不詳",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "TruncateMetadataCodes",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "Connect_population_dynamics_prefecture",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "\nINSERT INTO job_metadata_codes(job_code, job_type) VALUES\n        (1,  N'職業計'),\n        (2,  N'Ａ管理的職業'),\n        (3,  N'01管理的公務員'),\n        (4,  N'02法人・団体の役員'),\n        (5,  N'03法人・団体の管理職員'),\n        (6,  N'04その他の管理的職業'),\n        (7,  N'Ｂ専門的・技術的職業'),\n        (8,  N'05研究者'),\n        (9,  N'06農林水産技術者'),\n        (10,  N'07開発技術者'),\n        (11,  N'08製造技術者'),\n        (12,  N'09建築・土木技術者等'),\n        (13,  N'10情報処理・通信技術者'),\n        (14,  N'11その他の技術者'),\n        (15,  N'12医師、薬剤師等'),\n        (16,  N'13保健師、助産師等'),\n        (17,  N'14医療技術者'),\n        (18,  N'15その他の保健医療'),\n        (19,  N'16社会福祉の専門的職業'),\n        (20,  N'17法務の職業'),\n        (21,  N'18経営・金融等の職業'),\n        (22,  N'19教育の職業'),\n        (23,  N'20宗教家'),\n        (24,  N'21著述家、記者、編集者'),\n        (25,  N'22美術家、デザイナー等'),\n        (26,  N'23音楽家、舞台芸術家'),\n        (27,  N'24その他の専門的職業'),\n        (28,  N'Ｃ事務的職業'),\n        (29,  N'25一般事務員'),\n        (30,  N'26会計事務員'),\n        (31,  N'27生産関連事務員'),\n        (32,  N'28営業・販売関連事務員'),\n        (33,  N'29外勤事務員'),\n        (34,  N'30運輸・郵便事務'),\n        (35,  N'31事務用機器操作の職業'),\n        (36,  N'Ｄ販売の職業'),\n        (37,  N'32商品販売の職業'),\n        (38,  N'33販売類似の職業'),\n        (39,  N'34営業の職業'),\n        (40,  N'Ｅサービスの職業'),\n        (41,  N'35家庭生活支援サービス'),\n        (42,  N'36介護サービスの職業'),\n        (43,  N'37保健医療サービス'),\n        (44,  N'38生活衛生サービス'),\n        (45,  N'39飲食物調理の職業'),\n        (46,  N'40接客・給仕の職業'),\n        (47,  N'41居住施設・ビルの管理'),\n        (48,  N'42その他のサービス'),\n        (49,  N'Ｆ保安の職業'),\n        (50,  N'43自衛官'),\n        (51,  N'44司法警察職員'),\n        (52,  N'45その他の保安職業'),\n        (53,  N'Ｇ農林漁業の職業'),\n        (54,  N'46農業の職業'),\n        (55,  N'47林業の職業'),\n        (56,  N'48漁業の職業'),\n        (57,  N'Ｈ生産工程の職業'),\n        (58,  N'49生産設備（金属）'),\n        (59,  N'50生産設備（金属除く）'),\n        (60,  N'51生産設備（機械）'),\n        (61,  N'52金属材料製造等'),\n        (62,  N'54製品製造・加工処理'),\n        (63,  N'57機械組立の職業'),\n        (64,  N'60機械整備・修理の職業'),\n        (65,  N'61製品検査（金属）'),\n        (66,  N'62製品検査（金属除く）'),\n        (67,  N'63機械検査の職業'),\n        (68,  N'64生産関連・生産類似'),\n        (69,  N'Ｉ輸送・機械運転の職業'),\n        (70,  N'65鉄道運転の職業'),\n        (71,  N'66自動車運転の職業'),\n        (72,  N'67船舶・航空機運転'),\n        (73,  N'68その他の輸送の職業'),\n        (74,  N'69定置・建設機械運転'),\n        (75,  N'Ｊ建設・採掘の職業'),\n        (76,  N'70建設躯体工事の職業'),\n        (77,  N'71建設の職業'),\n        (78,  N'72電気工事の職業'),\n        (79,  N'73土木の職業'),\n        (80,  N'74採掘の職業'),\n        (81,  N'Ｋ運搬・清掃等の職業'),\n        (82,  N'75運搬の職業'),\n        (83,  N'76清掃の職業'),\n        (84,  N'77包装の職業'),\n        (85,  N'78その他の運搬等の職業'),\n        (86,  N'分類不能の職業')\n"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "TruncateMetadataCodes",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "CreateMetadataCodes",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "Connect_population_dynamics_prefecture",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "TRUNCATE TABLE job_metadata_codes;\n\n\n"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-03-01T08:02:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
