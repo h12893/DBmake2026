@@ -1,4 +1,4 @@
-INSERT INTO metadata_codes (prefecture_code, prefecture_name, region_code, region_type) VALUES
+INSERT INTO prefecture_metadata_codes (prefecture_code, prefecture_name, region_code, region_type) VALUES
 (50, N'東京都区部', 2, N'政令市、23区'),
 (51, N'札幌市', 2, N'政令市、23区'),
 (52, N'仙台市', 2, N'政令市、23区'),

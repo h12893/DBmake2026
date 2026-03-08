@@ -1,0 +1,1 @@
+TRUNCATE TABLE job_metadata_codes;

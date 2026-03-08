@@ -1,5 +1,5 @@
 
-INSERT INTO metadata_codes (prefecture_code, prefecture_name, region_code, region_type) VALUES
+INSERT INTO prefecture_metadata_codes (prefecture_code, prefecture_name, region_code, region_type) VALUES
 (1,  N'北海道', 1, N'都道府県'),
 (2,  N'青森県', 1, N'都道府県'),
 (3,  N'岩手県', 1, N'都道府県'),
